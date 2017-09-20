@@ -1,0 +1,75 @@
+@model StackUnderFlow.Models.Question
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<section class="question">
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DatePosted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DatePosted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpVotes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpVotes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DownVotes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DownVotes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.UserName)
+        </dd>
+    </dl>
+</section>
+<section class="answers">
+    @if(Model.Answers.Count == 0)
+    {
+        <p><i>No answers given yet</i></p>
+    } 
+    else
+    {
+        <p>Viewing @Model.Answers.Count answers</p>
+        @foreach(var answer in Model.Answers)
+        {
+            <p>@answer.AnswerText</p>
+        }
+    }
+</section>
+<section class="add-form">
+    <form asp-action="Create" asp-route-id=@Model.Id asp-controller="Answer">
+        <textarea name="answer"></textarea>
+        <button>Answer</button>
+    </form>
+
+</section>
+<section>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</section>
