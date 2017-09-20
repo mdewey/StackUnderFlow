@@ -20,7 +20,7 @@ namespace StackUnderFlow.Controllers
         public QuestionsController(ApplicationDbContext context, UserManager<ApplicationUser> um)
         {
             _context = context;
-            _userManager  = um;
+            _userManager = um;
         }
 
         // GET: Questions
@@ -40,7 +40,7 @@ namespace StackUnderFlow.Controllers
 
             var question = await _context.Questions
                 .Include(q => q.ApplicationUser)
-                .Include(i => i.Answers)
+                .Include(i => i.Answers).ThenInclude(t => t.ApplicationUser)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (question == null)
             {

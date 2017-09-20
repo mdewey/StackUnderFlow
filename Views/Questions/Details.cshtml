@@ -59,6 +59,7 @@
         @foreach(var answer in Model.Answers)
         {
             <p>@answer.AnswerText</p>
+            <p>@answer.ApplicationUser.UserName</p>
         }
     }
 </section>
